@@ -1,0 +1,26 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+entity registro is
+	Port (
+		reset, clk, x, y, z : in STD_LOGIC;
+		edo_sig   : in STD_LOGIC_VECTOR(2 downto 0);
+		edo_pres  : out STD_LOGIC_VECTOR(2 downto 0);
+		direccion : out STD_LOGIC_VECTOR(5 downto 0)
+	);
+end registro;
+
+architecture Behavioral of registro is
+signal edo : STD_LOGIC_VECTOR(2 downto 0) := "000";
+begin
+	process(reset, clk)
+	begin
+		if reset = '0' then edo <= "000";
+		elsif rising_edge(clk) then edo <= edo_sig;
+		end if;
+	end process;
+
+	-- fuera del proceso para que se actualice con el estado presente
+	edo_pres  <= edo;
+	direccion <= edo & x & y & z;
+end Behavioral;

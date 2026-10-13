@@ -1,0 +1,78 @@
+|Practica_03
+SALIDAS[0] <= memoria:inst.salidas[0]
+SALIDAS[1] <= memoria:inst.salidas[1]
+SALIDAS[2] <= memoria:inst.salidas[2]
+SALIDAS[3] <= memoria:inst.salidas[3]
+SALIDAS[4] <= memoria:inst.salidas[4]
+SALIDAS[5] <= memoria:inst.salidas[5]
+RESET => registro:inst2.reset
+CLK => registro:inst2.clk
+X => registro:inst2.x
+Y => registro:inst2.y
+Z => registro:inst2.z
+
+
+|Practica_03|memoria:inst
+direccion[0] => Mux7.IN19
+direccion[1] => Mux0.IN19
+direccion[1] => Mux1.IN36
+direccion[2] => Mux1.IN35
+direccion[2] => Mux2.IN19
+direccion[2] => Mux4.IN19
+direccion[2] => Mux6.IN19
+direccion[3] => Mux0.IN18
+direccion[3] => Mux1.IN34
+direccion[3] => Mux2.IN18
+direccion[3] => Mux4.IN18
+direccion[3] => Mux5.IN5
+direccion[3] => Mux6.IN18
+direccion[3] => Mux7.IN18
+direccion[3] => Mux8.IN5
+direccion[4] => Mux0.IN17
+direccion[4] => Mux1.IN33
+direccion[4] => Mux2.IN17
+direccion[4] => Mux3.IN5
+direccion[4] => Mux4.IN17
+direccion[4] => Mux6.IN17
+direccion[4] => Mux7.IN17
+direccion[5] => Mux0.IN16
+direccion[5] => Mux1.IN32
+direccion[5] => Mux2.IN16
+direccion[5] => Mux3.IN4
+direccion[5] => Mux4.IN16
+direccion[5] => Mux5.IN4
+direccion[5] => Mux6.IN16
+direccion[5] => Mux7.IN16
+direccion[5] => Mux8.IN4
+salidas[0] <= Mux8.DB_MAX_OUTPUT_PORT_TYPE
+salidas[1] <= Mux7.DB_MAX_OUTPUT_PORT_TYPE
+salidas[2] <= Mux6.DB_MAX_OUTPUT_PORT_TYPE
+salidas[3] <= Mux5.DB_MAX_OUTPUT_PORT_TYPE
+salidas[4] <= Mux4.DB_MAX_OUTPUT_PORT_TYPE
+salidas[5] <= Mux3.DB_MAX_OUTPUT_PORT_TYPE
+liga[0] <= Mux2.DB_MAX_OUTPUT_PORT_TYPE
+liga[1] <= Mux1.DB_MAX_OUTPUT_PORT_TYPE
+liga[2] <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|Practica_03|registro:inst2
+reset => edo_pres[0].ACLR
+reset => edo_pres[1].ACLR
+reset => edo_pres[2].ACLR
+clk => edo_pres[0].CLK
+clk => edo_pres[1].CLK
+clk => edo_pres[2].CLK
+x => direccion[2].DATAIN
+y => direccion[1].DATAIN
+z => direccion[0].DATAIN
+edo_sig[0] => edo_pres[0].DATAIN
+edo_sig[1] => edo_pres[1].DATAIN
+edo_sig[2] => edo_pres[2].DATAIN
+direccion[0] <= z.DB_MAX_OUTPUT_PORT_TYPE
+direccion[1] <= y.DB_MAX_OUTPUT_PORT_TYPE
+direccion[2] <= x.DB_MAX_OUTPUT_PORT_TYPE
+direccion[3] <= edo_pres[0].DB_MAX_OUTPUT_PORT_TYPE
+direccion[4] <= edo_pres[1].DB_MAX_OUTPUT_PORT_TYPE
+direccion[5] <= edo_pres[2].DB_MAX_OUTPUT_PORT_TYPE
+
+
