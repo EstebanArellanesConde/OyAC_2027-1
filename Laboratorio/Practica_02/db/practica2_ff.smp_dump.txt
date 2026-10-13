@@ -1,0 +1,7 @@
+
+State Machine - |practica2_ff|estado_actual
+Name estado_actual.D estado_actual.C estado_actual.B estado_actual.A 
+estado_actual.A 0 0 0 0 
+estado_actual.B 0 0 1 1 
+estado_actual.C 0 1 0 1 
+estado_actual.D 1 0 0 1 
