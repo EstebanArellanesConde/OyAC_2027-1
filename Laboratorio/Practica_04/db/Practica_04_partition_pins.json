@@ -1,0 +1,117 @@
+{
+	"partitions" : [
+		{
+			"name" : "Top",
+			"pins" : [
+				{
+					"name" : "S10",
+					"strict" : false
+				},
+				{
+					"name" : "S5",
+					"strict" : false
+				},
+				{
+					"name" : "S3",
+					"strict" : false
+				},
+				{
+					"name" : "S2",
+					"strict" : false
+				},
+				{
+					"name" : "S0",
+					"strict" : false
+				},
+				{
+					"name" : "EDO_PRES[3]",
+					"strict" : false
+				},
+				{
+					"name" : "EDO_PRES[2]",
+					"strict" : false
+				},
+				{
+					"name" : "EDO_PRES[1]",
+					"strict" : false
+				},
+				{
+					"name" : "EDO_PRES[0]",
+					"strict" : false
+				},
+				{
+					"name" : "EDO_SIG[3]",
+					"strict" : false
+				},
+				{
+					"name" : "EDO_SIG[2]",
+					"strict" : false
+				},
+				{
+					"name" : "EDO_SIG[1]",
+					"strict" : false
+				},
+				{
+					"name" : "EDO_SIG[0]",
+					"strict" : false
+				},
+				{
+					"name" : "PRUEBA[2]",
+					"strict" : false
+				},
+				{
+					"name" : "PRUEBA[1]",
+					"strict" : false
+				},
+				{
+					"name" : "PRUEBA[0]",
+					"strict" : false
+				},
+				{
+					"name" : "SALIDAS[4]",
+					"strict" : false
+				},
+				{
+					"name" : "SALIDAS[3]",
+					"strict" : false
+				},
+				{
+					"name" : "SALIDAS[2]",
+					"strict" : false
+				},
+				{
+					"name" : "SALIDAS[1]",
+					"strict" : false
+				},
+				{
+					"name" : "SALIDAS[0]",
+					"strict" : false
+				},
+				{
+					"name" : "W",
+					"strict" : false
+				},
+				{
+					"name" : "Y",
+					"strict" : false
+				},
+				{
+					"name" : "X",
+					"strict" : false
+				},
+				{
+					"name" : "Z",
+					"strict" : false
+				},
+				{
+					"name" : "CLK",
+					"strict" : false
+				},
+				{
+					"name" : "RESET",
+					"strict" : false
+				}
+			]
+		}
+	]
+}

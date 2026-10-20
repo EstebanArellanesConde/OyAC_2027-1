@@ -1,0 +1,32 @@
+|P4
+LEDS[0] <= carta_asm:inst.leds[0]
+LEDS[1] <= carta_asm:inst.leds[1]
+LEDS[2] <= carta_asm:inst.leds[2]
+LEDS[3] <= carta_asm:inst.leds[3]
+LEDS[4] <= carta_asm:inst.leds[4]
+CLK => carta_asm:inst.clk
+RESET => carta_asm:inst.reset
+W => carta_asm:inst.w
+X => carta_asm:inst.x
+Y => carta_asm:inst.y
+Z => carta_asm:inst.z
+
+
+|P4|carta_asm:inst
+clk => edo_pres[0].CLK
+clk => edo_pres[1].CLK
+clk => edo_pres[2].CLK
+reset => edo_pres[0].ACLR
+reset => edo_pres[1].ACLR
+reset => edo_pres[2].ACLR
+w => Mux19.IN4
+x => Mux19.IN5
+y => Mux19.IN6
+z => Mux19.IN7
+leds[0] <= leds.DB_MAX_OUTPUT_PORT_TYPE
+leds[1] <= leds.DB_MAX_OUTPUT_PORT_TYPE
+leds[2] <= leds.DB_MAX_OUTPUT_PORT_TYPE
+leds[3] <= leds.DB_MAX_OUTPUT_PORT_TYPE
+leds[4] <= leds.DB_MAX_OUTPUT_PORT_TYPE
+
+

@@ -1,0 +1,17 @@
+set_global_assignment -name FAMILY "Cyclone IV E"
+set_global_assignment -name DEVICE EP4CE115F29C7
+set_global_assignment -name TOP_LEVEL_ENTITY maquina_ies
+set_global_assignment -name VHDL_FILE mux_entradas.vhd
+set_global_assignment -name VHDL_FILE rom_ies.vhd
+set_global_assignment -name VHDL_FILE maquina_ies.vhd
+set_global_assignment -name MIF_FILE memoria_ies.mif
+set_global_assignment -name EDA_SIMULATION_TOOL "ModelSim-Altera (VHDL)"
+set_global_assignment -name EDA_TEST_BENCH_ENABLE_STATUS TEST_BENCH_MODE -section_id eda_simulation
+set_global_assignment -name EDA_NATIVELINK_SIMULATION_TEST_BENCH tb_maquina_ies -section_id eda_simulation
+set_global_assignment -name EDA_TEST_BENCH_NAME tb_maquina_ies -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME DUT -section_id tb_maquina_ies
+set_global_assignment -name EDA_TEST_BENCH_RUN_SIM_FOR "2 us" -section_id tb_maquina_ies
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME tb_maquina_ies -section_id tb_maquina_ies
+set_global_assignment -name EDA_TEST_BENCH_FILE tb_maquina_ies.vhd -section_id tb_maquina_ies
+
+set_global_assignment -name LAST_QUARTUS_VERSION "20.1.0 Lite Edition"

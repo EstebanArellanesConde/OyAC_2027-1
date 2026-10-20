@@ -1,0 +1,133 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity practica4 is
+    port (
+        clk              : in  std_logic;
+        reset            : in  std_logic;
+        Z, W, X, Y       : in  std_logic;
+        estado           : out std_logic_vector(2 downto 0);
+        prueba           : out std_logic;
+        estado_siguiente : out std_logic_vector(2 downto 0);
+        salidas          : out std_logic_vector(5 downto 0)
+    );
+end entity;
+
+architecture rtl of practica4 is
+    subtype state_t is std_logic_vector(2 downto 0);
+    -- Estados: A=000, B=001, C=010, D=011, E=100, F=101, G=110.
+    constant A : state_t := "000";
+    constant B : state_t := "001";
+    constant C : state_t := "010";
+    constant D : state_t := "011";
+    constant E : state_t := "100";
+    constant F : state_t := "101";
+    constant G : state_t := "110";
+
+    -- Selector de prueba: 0=Z, 1=W, 2=X, 3=Y, 4=constante 0.
+    signal estado_reg, next_reg : state_t := A;
+    signal selector : integer range 0 to 4 := 4;
+    signal prueba_i : std_logic := '0';
+    signal salidas_i : std_logic_vector(5 downto 0) := (others => '0');
+
+    -- Palabra de control conceptual:
+    -- selector, liga_falsa, liga_verdadera, salidas(5..0).
+    -- La selección de liga se realiza con el valor probado:
+    -- prueba=0 -> liga falsa; prueba=1 -> liga verdadera.
+    procedure decodificar(
+        signal st_next : out state_t;
+        signal sel     : out integer;
+        signal outbits : out std_logic_vector(5 downto 0);
+        constant st    : in state_t;
+        constant z_i   : in std_logic;
+        constant w_i   : in std_logic;
+        constant x_i   : in std_logic;
+        constant y_i   : in std_logic
+    ) is
+        variable bit_prueba : std_logic;
+        variable falsa, verdadera : state_t;
+        variable s : integer range 0 to 4;
+    begin
+        falsa := st;
+        verdadera := st;
+        s := 4;
+        outbits <= (others => '0');
+
+        case st is
+            when A =>
+                -- EST A: transición incondicional a EST B
+                falsa := B; verdadera := B; s := 4;
+            when B =>
+                -- EST B: S1=1; probar Z; Z=0 -> C, Z=1 -> E
+                falsa := C; verdadera := E; s := 0;
+                outbits <= "000010";
+            when C =>
+                -- EST C: bloque de salida vacío/no legible en la copia
+                -- Avanza a D.
+                falsa := D; verdadera := D; s := 4;
+            when D =>
+                -- EST D: S3=1 y S2=0; probar X; X=0 -> F, X=1 -> C
+                falsa := F; verdadera := C; s := 2;
+                outbits <= "001000";
+            when E =>
+                -- EST E: S0=0 y S5=1; probar W; W=0 -> B, W=1 -> G
+                falsa := B; verdadera := G; s := 1;
+                outbits <= "100000";
+            when F =>
+                -- EST F: S0=0; regreso a C
+                falsa := C; verdadera := C; s := 4;
+                outbits <= "000000";
+            when G =>
+                -- EST G: S1=1; probar Y; Y=0 -> F, Y=1 -> estado terminal G
+                falsa := F; verdadera := G; s := 3;
+                outbits <= "000010";
+            when others =>
+                falsa := A; verdadera := A; s := 4;
+        end case;
+
+        case s is
+            when 0 => bit_prueba := z_i;
+            when 1 => bit_prueba := w_i;
+            when 2 => bit_prueba := x_i;
+            when 3 => bit_prueba := y_i;
+            when others => bit_prueba := '0';
+        end case;
+        sel <= s;
+        if bit_prueba = '1' then
+            st_next <= verdadera;
+        else
+            st_next <= falsa;
+        end if;
+    end procedure;
+begin
+    process(estado_reg, Z, W, X, Y)
+    begin
+        decodificar(next_reg, selector, salidas_i, estado_reg, Z, W, X, Y);
+    end process;
+
+    process(selector, Z, W, X, Y)
+    begin
+        case selector is
+            when 0 => prueba_i <= Z;
+            when 1 => prueba_i <= W;
+            when 2 => prueba_i <= X;
+            when 3 => prueba_i <= Y;
+            when others => prueba_i <= '0';
+        end case;
+    end process;
+
+    process(clk, reset)
+    begin
+        if reset = '1' then
+            estado_reg <= A;
+        elsif rising_edge(clk) then
+            estado_reg <= next_reg;
+        end if;
+    end process;
+
+    estado <= estado_reg;
+    estado_siguiente <= next_reg;
+    prueba <= prueba_i;
+    salidas <= salidas_i;
+end architecture;

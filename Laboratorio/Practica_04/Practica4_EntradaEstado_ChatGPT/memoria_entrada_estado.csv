@@ -1,0 +1,8 @@
+Estado,Direccion/Estado,Prueba,Selector,Si prueba=0 (liga falsa),Si prueba=1 (liga verdadera),Salidas visibles interpretadas
+A,000,0,Constante 0,B,B,Ninguna legible
+B,001,Z,0,C,E,S1
+C,010,0,Constante 0,D,D,Ninguna legible
+D,011,X,2,F,C,S3 y S2 negada
+E,100,W,1,B,G,S0 negada y S5
+F,101,0,Constante 0,C,C,S0 negada (interpretación del diagrama)
+G,110,Y,3,F,G,S1
